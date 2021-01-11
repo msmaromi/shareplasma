@@ -1,48 +1,37 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal starter
-</h1>
+# gatsby-absurd
 
-## 🚀 Quick start
+An absurd Gatsby starter. The collection of illustrations, [absurd.design](https://absurd.design/) by [Diana Valeanu](https://twitter.com/diana_valeanu) is a very fascinating and beautiful project with some pretty thoughtful concepts. Experimentation on how that could be put together on a site ended up as this starter.
 
-1.  **Create a Gatsby site.**
+![screenshot](https://user-images.githubusercontent.com/20743219/85018804-64ec4e00-b18b-11ea-9aa0-d4be033efff8.png)
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+[Live Demo](https://gatsby-absurd.vercel.app/)
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+## Installation
 
-2.  **Start developing.**
+Install the dependencies:
 
-    Navigate into your new site’s directory and start it up.
+### `yarn install`
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+Run the development server:
 
-3.  **Open the code and start customizing!**
+### `yarn dev`
 
-    Your site is now running at http://localhost:8000!
+Production build to `/public`:
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+### `yarn build`
 
-4.  **Learn more**
+Cleanup cache (often fixes misc errors when run before `yarn dev`):
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+### `yarn clean`
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## Content
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+Each of the sections in the site are placed in `src/sections`. Data is usually separated out into objects/arrays to be rendered in the component.
 
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## SEO
 
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+The component `src/components/common/SEO.js` handles all meta data and SEO content, modify the `SEO_DATA` variable to add the data automatically. For application manifest data and favicon, modify the `gatsby-plugin-manifest` configuration in `gatsby-config.js`.
 
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## Styling
+
+This project uses [styled-components]() to handle styling: `src/styles/theme.js` defines the styling base and `src/styles/GlobalStyles.js` includes basic element styles along with the CSS Reset.
