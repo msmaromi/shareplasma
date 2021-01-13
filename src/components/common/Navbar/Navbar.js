@@ -1,83 +1,94 @@
-import React, { Component } from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
-import Scrollspy from 'react-scrollspy';
+/** @jsx jsx */
 
-import { Container } from '@components/global';
-import {
-  Nav,
-  NavItem,
-  Brand,
-  StyledContainer,
-  NavListWrapper,
-  MobileMenu,
-  Mobile,
-} from './style';
+import React from "react";
+import { Link } from "gatsby";
+import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import { jsx } from "theme-ui";
 
-import { ReactComponent as MenuIcon } from '@static/icons/menu.svg';
+const MenuItems = [
+  {
+    path: "/",
+    title: "Beranda",
+  },
+  {
+    path: "/share",
+    title: "Donor Plasma",
+  },
+  {
+    path: "/need",
+    title: "Butuh Plasma",
+  },
+];
 
-const NAV_ITEMS = ['About', 'Brands', 'Team', 'FAQ'];
+const ListLink = (props) => (
+  <li>
+    <Link to={props.to}>{props.children}</Link>
+  </li>
+);
 
-class Navbar extends Component {
-  state = {
-    mobileMenuOpen: false,
-  };
+class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showMenu: false };
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+  }
 
-  toggleMobileMenu = () => {
-    this.setState(prevState => ({ mobileMenuOpen: !prevState.mobileMenuOpen }));
-  };
-
-  closeMobileMenu = () => {
-    if (this.state.mobileMenuOpen) {
-      this.setState({ mobileMenuOpen: false });
-    }
-  };
-
-  getNavAnchorLink = item => (
-    <AnchorLink href={`#${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
-      {item}
-    </AnchorLink>
-  );
-
-  getNavList = ({ mobile = false }) => (
-    <NavListWrapper mobile={mobile}>
-      <Scrollspy
-        items={NAV_ITEMS.map(item => item.toLowerCase())}
-        currentClassName="active"
-        mobile={mobile}
-        offset={-64}
-      >
-        {NAV_ITEMS.map(navItem => (
-          <NavItem key={navItem}>{this.getNavAnchorLink(navItem)}</NavItem>
-        ))}
-      </Scrollspy>
-    </NavListWrapper>
-  );
+  handleToggleClick() {
+    this.setState((state) => ({
+      showMenu: !state.showMenu,
+    }));
+  }
 
   render() {
-    const { mobileMenuOpen } = this.state;
-
+    const listMenuItems = MenuItems.map((menuItem, index) => (
+      <ListLink key={index} to={menuItem.path}>
+        {menuItem.title}
+      </ListLink>
+    ));
     return (
-      <Nav {...this.props}>
-        <StyledContainer>
-          <Brand>Absurd</Brand>
-          <Mobile>
-            <button onClick={this.toggleMobileMenu} style={{ color: 'black' }}>
-              <MenuIcon />
-            </button>
-          </Mobile>
-
-          <Mobile hide>{this.getNavList({})}</Mobile>
-        </StyledContainer>
-        <Mobile>
-          {mobileMenuOpen && (
-            <MobileMenu>
-              <Container>{this.getNavList({ mobile: true })}</Container>
-            </MobileMenu>
-          )}
-        </Mobile>
-      </Nav>
+      <header className="site-header">
+        <div className="site-logo">
+          <Link to="/">Share Plasma</Link>
+        </div>
+        <nav className="site-navigation">
+          <button
+            onClick={this.handleToggleClick}
+            className={
+              "menu-trigger" + (this.state.showMenu ? " is-active" : "")
+            }
+          >
+            <div className="icon-menu-line">
+              <RiMenu3Line />
+            </div>
+            <div className="icon-menu-close">
+              <RiCloseLine />
+            </div>
+          </button>
+          <ul>
+            {listMenuItems}
+            <div sx={navStyle.border}></div>
+          </ul>
+        </nav>
+      </header>
     );
   }
 }
 
-export default Navbar;
+export default Navigation;
+
+const navStyle = {
+  menu: {
+    ul: {
+      bg: "primary",
+    },
+  },
+  theme: {
+    display: ["block", "block", "block", "none"],
+    p: " 25px 20px 20px",
+  },
+  border: {
+    bg: "borderColor",
+    borderTop: "1px solid transparent",
+    display: ["block", "block", "block", "none"],
+  },
+};

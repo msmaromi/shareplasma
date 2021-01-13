@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   plugins: [
@@ -28,6 +28,7 @@ module.exports = {
         path: `${__dirname}/src/images/art`,
       },
     },
+    `gatsby-plugin-theme-ui`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -52,12 +53,12 @@ module.exports = {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: {
-          '@components': path.resolve(__dirname, 'src/components'),
-          '@common': path.resolve(__dirname, 'src/components/common'),
-          '@images': path.resolve(__dirname, 'src/images'),
-          '@sections': path.resolve(__dirname, 'src/components/sections'),
-          '@styles': path.resolve(__dirname, 'src/styles/'),
-          '@static': path.resolve(__dirname, 'static/'),
+          "@components": path.resolve(__dirname, "src/components"),
+          "@common": path.resolve(__dirname, "src/components/common"),
+          "@images": path.resolve(__dirname, "src/images"),
+          "@sections": path.resolve(__dirname, "src/components/sections"),
+          "@styles": path.resolve(__dirname, "src/styles/"),
+          "@static": path.resolve(__dirname, "static/"),
         },
       },
     },
