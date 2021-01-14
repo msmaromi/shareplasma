@@ -6,6 +6,7 @@ import qs from "querystring";
 import Layout from "@common/Layout";
 import Navbar from "@common/Navbar";
 import { Section, Container } from "@components/global";
+import Footer from "@sections/Footer";
 import { provinsiList } from "@utils/administrative";
 
 import "@styles/form.css";
@@ -171,6 +172,7 @@ const DonorPage = () => {
           </span>
         </Container>
       </Section>
+      <Footer />
     </Layout>
   );
 };
